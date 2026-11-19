@@ -14,7 +14,8 @@ All examples below were generated with `WeVisOne-VL-2B` (`q4_k`, Metal backend) 
 
 ```sh
 ./build-metal/wevision-cli models/WeVisOne-VL-2B_q4_k.gguf images/dogs.jpg \
-  --backend metal --task detect --query "dog" --visualize asset/dogs-detect.png
+  --backend metal --task detect --query "dog"  --min-pixels $((128 * 128)) \
+  --max-pixels $((512 * 512)) --visualize asset/dogs-detect.png 
 ```
 
 | Input ([`images/dogs.jpg`](images/dogs.jpg)) | Output (`4` boxes: `dog`) |
@@ -36,8 +37,8 @@ All examples below were generated with `WeVisOne-VL-2B` (`q4_k`, Metal backend) 
 ### 3. Counting (`--task count`)
 
 ```sh
-./build-metal/wevision-cli models/WeVisOne-VL-2B_q4_k.gguf images/boys.jpg \
-  --backend metal --task count --query "boy" --visualize asset/boys-count.png
+./build-metal/wevision-cli models/WeVisOne-VL-2B_q4_k.gguf images/boys.jpg  --min-pixels $((128 * 128)) \
+  --max-pixels $((512 * 512)) --backend metal --task count --query "boy" --visualize asset/boys-count.png
 ```
 
 | Input ([`images/boys.jpg`](images/boys.jpg)) | Output (`6` instances) |
@@ -48,7 +49,7 @@ All examples below were generated with `WeVisOne-VL-2B` (`q4_k`, Metal backend) 
 
 ```sh
 ./build-metal/wevision-cli models/WeVisOne-VL-2B_q4_k.gguf images/coffee_sign.jpg \
-  --backend metal --task ocr --visualize asset/coffee-ocr.png
+  --backend metal --task ocr --min-pixels $((128 * 128)) --max-pixels $((512 * 512)) --visualize asset/coffee-ocr.png
 ```
 
 | Input ([`images/coffee_sign.jpg`](images/coffee_sign.jpg)) | Output (`13` text boxes) |
@@ -61,7 +62,7 @@ Recognized text: `REAL`, `COFFEE`, `&`, `Tea`, `Cafe`, `10`, `METERS`, `AHEAD`, 
 
 ```sh
 ./build-metal/wevision-cli models/WeVisOne-VL-2B_q4_k.gguf images/boys.jpg \
-  --backend metal --task segment --query "boy" \
+  --backend metal --task segment --query "boy" --min-pixels $((128 * 128)) --max-pixels $((512 * 512))  \
   --visualize asset/boys-segment.png --output-prefix asset/boys-seg
 ```
 
@@ -73,7 +74,7 @@ Recognized text: `REAL`, `COFFEE`, `&`, `Tea`, `Cafe`, `10`, `METERS`, `AHEAD`, 
 
 ```sh
 ./build-metal/wevision-cli models/WeVisOne-VL-2B_q4_k.gguf images/seabreeze.jpg \
-  --backend metal --task matting --query "boy" \
+  --backend metal --task matting --query "boy" --min-pixels $((128 * 128)) --max-pixels $((512 * 512)) \
   --visualize asset/seabreeze-overlay.png --output-prefix asset/seabreeze
 ```
 
